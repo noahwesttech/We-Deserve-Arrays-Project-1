@@ -22,7 +22,7 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <span class="app_name">Mood Booster</span>
+                        <span class="app-name">Mood Booster</span>
                         <!-- Burger menu -->
                         <span class="navbar-burger burger" data-target="navbarMenu">
                             <span></span>
@@ -35,8 +35,8 @@
                         <div class="navbar-end">
                             <div class="tabs is-right">
                                 <ul class="link_section">
-                                    <li class="is-active home_btn"><a>Home</a></li>
-                                    <li class="favorite_btn"><a href="">Favorites</a></li>
+                                    <li class="is-active home-btn"><a>Home</a></li>
+                                    <li class="favorite-btn"><a href="">Favorites</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -50,16 +50,30 @@
                 <div class="columns is-vcentered">
                     <!-- Left column for dog section -->
                     <div class="column is-6">
-                        <figure class="image is-4by3 left_img">
-                            <img src="./assets/dog.jpg" alt="Dog peeking from the bottom">
+                        <figure class="image is-4by3 left-img">
+                                <div class="is-clickable-dog" id="dog-picture">
+                                    <img src="./assets/dog.jpg" alt="Dog peeking from the bottom">
+                                </div>
                         </figure>
                     </div>
                     <!-- Right column for cat section -->
                     <div class="column is-6">
-                        <figure class="image is-4by3">
-                            <img src="./assets/cat.jpg" alt="White cat looking up">
+                        <figure class="image is-4by3 right-img">
+                            <div class="is-clickable-cat" id="cat-picture">
+                                <img src="./assets/cat.jpg" alt="White cat looking up">
+                            </div>
                         </figure>
                     </div>
+                </div>
+
+                <!-- Button container -->
+                <div class="columns is-vcentered">
+                    <div class="column is-5"></div>
+                    <!-- Next Button -->
+                    <div class="column is-2" style="display:none">
+                        <button class="button" id="next-button">NEXT</button>
+                    </div>
+                    <div class="column is-5"></div>
                 </div>
             </div>
         </div>
