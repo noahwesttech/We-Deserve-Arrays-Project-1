@@ -74,3 +74,55 @@ function addFavorite(event) { //pull source from img, append to favorite img arr
 }
 //remove favorite?
 //pull source from img, splice from array
+
+//Variables
+var invisibleCol = document.getElementById('columnTwo');
+var apiCallButton = document.getElementById('next-button');
+var dogImage = document.getElementById('dogGen');
+var catImage = document.getElementById('catGen');
+var initialPress = document.getElementById('simple-button');
+var dogUrl = "https://dog.ceo/api/breeds/image/random?api_key=2956d378-6020-4b69-9e28-da7f6fe497ea"
+var catUrl = "https://api.thecatapi.com/v1/images/search?format=json&limit=1&mime_types=jpeg&api_key=14117caf-d563-42d7-9732-1db0619ab4b4"
+
+//call Api images
+function apiGenImages(){
+    fetch(dogUrl)
+    .then(res => res.json())
+    .then(result => {
+        console.log(result)
+        dogImage.src = result.message
+    })    
+    .catch(err=>console.log(err))
+
+    fetch(catUrl)
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            catImage.src = result.message
+        })    
+    .catch(err=>console.log(err))
+};
+
+//function to make next-button appear after the cat or dog button is clicked for the first time
+function buttonAppear() {
+    invisibleCol.removeAttribute('style');
+};
+
+//When next-button appears it will continously call images from both cat/dog apis
+apiCallButton.addEventListener('click', function() {
+    apiGenImages()
+});
+
+//Makes the first click of the clickable cat/dog call images and reveal the next button, then clicking the cat/dog will save the api image id to favorites
+initialPress.addEventListener('click', function(){
+    if (invisibleCol.style.display === "none") {
+        console.log('this is the very first click')
+        apiGenImages()
+        buttonAppear()
+        
+    } else {
+        console.log('this should run every next time button is pressed')
+        //save to favorites function
+
+    }
+});
