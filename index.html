@@ -5,37 +5,34 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
     <!-- CSS Link -->
     <link rel="stylesheet" href="./assets/css/style.css">
 
-    <title>Mood Booster App</title>
+    <title>Test</title>
 </head>
 
 <body>
+    <!-- Navbar -->
     <section class="hero is-fullheight is-default is-bold">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <span class="app-name">Mood Booster</span>
-                        <!-- Burger menu -->
-                        <span class="navbar-burger burger" data-target="navbarMenu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
+                        <span class="app-name">DOse of DOpamine</span>
                     </div>
+
                     <!-- Links container for Home and Favorites -->
                     <div id="navbarMenu" class="navbar-menu">
                         <div class="navbar-end">
                             <div class="tabs is-right">
                                 <ul class="link_section">
-                                    <li class="is-active home-btn"><a>Home</a></li>
+                                    <li class="is-active home-btn"><a href="index.html">Home</a></li>
                                     <li class="favorite-btn"><a href="">Favorites</a></li>
                                 </ul>
                             </div>
@@ -44,15 +41,30 @@
                 </div>
             </nav>
         </div>
+
+        <!-- Welcome Page -->
+        <div class="hero-body" id="welcome-page">
+            <div class="container has-text-centered">
+                <h2 class="title is-2 welcome-title">MOOD BOOSTER</h2>
+                <p class="welcome-content">We understand that after a long day, relaxation is all you want</p>
+                <p class="welcome-content">You are about to see a lot of cute and funny pictures of dogs and cats</p>
+                <p class="welcome-content">Two pictures will show at the same time</p>
+                <p class="welcome-content">Which ever you pick will be saved to your favorites</p>
+                <p class="welcome-content">Just click the button once you are ready to relax</p>
+                <!-- Start button -->
+                <button class="button is-centered" id="start-btn">START</button>
+            </div>
+        </div>
+
         <!-- Main Body -->
-        <div class="hero-body">
+        <div class="hero-body" id="picture-page" style="display:none;">
             <div class="container has-text-centered">
                 <div class="columns is-vcentered">
                     <!-- Left column for dog section -->
                     <div class="column is-6">
                         <figure class="button image is-4by3 left-img">
                             <div onclick="" class="is-clickable-dog" id="dog-picture">
-                                <img id="dogGen" src="./assets/dog.jpg" alt="Dog peeking from the bottom">
+                                <img id="dogGen" src="./assets/dog.jpg" alt="dog picture">
                             </div>
                         </figure>
                     </div>
@@ -60,7 +72,7 @@
                     <div class="column is-6">
                         <figure class="button image is-4by3 right-img">
                             <div class="is-clickable-cat" id="cat-picture">
-                                <img id="catGen" src="./assets/cat.jpg" alt="White cat looking up">
+                                <img id="catGen" src="./assets/cat.jpg" alt="cat picture">
                             </div>
                         </figure>
                     </div>
