@@ -67,3 +67,18 @@ body {
     font-size: 5em;
     margin: auto 2rem;
 }
+#previousFave, #nextFave {
+    margin: 20px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    padding: 20px 100px;
+    background-color: transparent;
+    box-shadow: 0px 0px 5px rgb(72, 70, 70);
+    transition: all 0.6 ease-in-out;
+}
+
+#previousFave:hover, #nextFave:hover {
+    background-color: white;
+    box-shadow: 0px 0px 5px white;
+    font-weight: bold;
+}
