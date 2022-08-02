@@ -34,7 +34,7 @@
                             <div class="tabs is-right">
                                 <ul class="link_section">
                                     <li class="is-active home-btn"><a href="index.html">Home</a></li>
-                                    <li class="favorite-btn" id="favorite-button"><a href="#">Favorites</a></li>
+                                    <li class="favorite-btn" id="favorite-btn"><a href="#">Favorites</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -110,12 +110,14 @@
     </section>
 
     <!--modal-->
-    <div class="modal">
+    <div class="modal" id="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
+            <a href="#" id="previousFave"><</a>
             <div id="slideshow"><span>No Favorites</span></div>
+            <a href="#" id="nextFave">></a>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button class="modal-close is-large" aria-label="close" id="closeBtn"></button>
     </div>
 
     <script src="./assets/js/scripts.js"></script>
