@@ -80,9 +80,13 @@ var invisibleCol = document.getElementById('columnTwo');
 var apiCallButton = document.getElementById('next-button');
 var dogImage = document.getElementById('dogGen');
 var catImage = document.getElementById('catGen');
-var initialPress = document.getElementById('simple-button');
+var dogSaveBtn = document.getElementById('dog-picture');
+var catSaveBtn = document.getElementById('cat-picture');
 var dogUrl = "https://dog.ceo/api/breeds/image/random?api_key=2956d378-6020-4b69-9e28-da7f6fe497ea"
 var catUrl = "https://api.thecatapi.com/v1/images/search?format=json&limit=1&mime_types=jpeg&api_key=14117caf-d563-42d7-9732-1db0619ab4b4"
+var fav = JSON.parse(localStorage.getItem('favorite')) || []
+let favoriteDog = ''
+let favoriteCat = ''
 
 //call Api images
 function apiGenImages(){
@@ -91,6 +95,9 @@ function apiGenImages(){
     .then(result => {
         console.log(result)
         dogImage.src = result.message
+        favoriteDog = result.message
+        console.log('the last dog url was saved in a string')
+        console.log(favoriteDog)
     })    
     .catch(err=>console.log(err))
 
@@ -98,7 +105,10 @@ function apiGenImages(){
         .then(res => res.json())
         .then(result => {
             console.log(result)
-            catImage.src = result.message
+            catImage.src = result[0].url
+            favoriteCat = result[0].url
+            console.log('the last cat url was saved in a string')
+            console.log(favoriteCat)
         })    
     .catch(err=>console.log(err))
 };
@@ -114,7 +124,7 @@ apiCallButton.addEventListener('click', function() {
 });
 
 //Makes the first click of the clickable cat/dog call images and reveal the next button, then clicking the cat/dog will save the api image id to favorites
-initialPress.addEventListener('click', function(){
+dogSaveBtn.addEventListener('click', function(){
     if (invisibleCol.style.display === "none") {
         console.log('this is the very first click')
         apiGenImages()
@@ -122,7 +132,27 @@ initialPress.addEventListener('click', function(){
         
     } else {
         console.log('this should run every next time button is pressed')
-        //save to favorites function
-
+        dogSaveBtn.onclick = function(){
+            fav.push(favoriteDog)
+            localStorage.setItem('favorite', JSON.stringify(fav))
+            console.log('This Dog url was saved to favorites container')
+            console.log(localStorage)
+        }
     }
 });
+
+catSaveBtn.addEventListener('click', function(){
+    if (invisibleCol.style.display === "none") {
+        console.log('this is the very first click')
+        apiGenImages()
+        buttonAppear()
+        
+    } else {
+        console.log('this should run every next time button is pressed')
+        catSaveBtn.onclick = function(){
+            fav.push(favoriteCat)
+            localStorage.setItem('favorite', JSON.stringify(fav))
+            console.log('This cat url was saved to favorites container')
+            console.log(localStorage)
+        }       
+}});
