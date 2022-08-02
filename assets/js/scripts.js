@@ -2,24 +2,52 @@
 let likedArray = []
 let currentFavorite = ""
 const slideshow = document.querySelector("#slideshow")
+const showFav = document.querySelector("#favorite-btn")
+const showModal = document.querySelector("#modal")
+const closeBtn = document.querySelector("#closeBtn")
+const previousFave = document.querySelector("#previousFave")
+const nextFave = document.querySelector("#nextFave")
 
 //save and load functions
-function save() {
-    window.localStorage.setItem('friends', JSON.stringify(likedArray))
+showFav.addEventListener('click', modalToggle)
+closeBtn.addEventListener('click', modalToggle)
+previousFave.addEventListener('click', lastImg)
+nextFave.addEventListener('click', nextImg)
+
+function modalToggle() {
+    showModal.classList.toggle("is-active")
+    load()
+    showSlideshow()
 }
 
 function load() {
-    const stored = window.localStorage.getItem('friends')
+    console.log("loading")
+    const stored = window.localStorage.getItem('favorite')
+    console.log(stored)
     if (stored) {
         likedArray = JSON.parse(stored)
+        currentFavorite = likedArray[0]
     }
 }
+function nextImg() {
+    rollSlide()
+    displayImg()
+}
+
+function lastImg() {
+    rollBack()
+    displayImg()
+}
+
 //if no favorites, stop
 function rollSlide() {
+   
+    
     if (likedArray.length===0) {
         return
     }
     for (let i = 0; i < likedArray.length; i++) {
+        console.log(`current: ${currentFavorite}, array: ${likedArray[i]}`)
         if (currentFavorite===likedArray[i] && i===likedArray.length - 1) {
             currentFavorite = likedArray[0] //if you are at end of list, go back to first
             return
@@ -69,11 +97,8 @@ function displayImg() {
     slideshow.appendChild(newSlide) //attached img. YAY!
 }
 
-function addFavorite(event) { //pull source from img, append to favorite img array
-    
-}
-//remove favorite?
-//pull source from img, splice from array
+
+
 
 //Variables
 var invisibleCol = document.getElementById('columnTwo');
@@ -145,6 +170,8 @@ dogSaveBtn.addEventListener('click', function(){
         
     } else {
         console.log('this should run every next time button is pressed')
+        fav.push(favoriteDog)
+        localStorage.setItem('favorite', JSON.stringify(fav))
         dogSaveBtn.onclick = function(){
             fav.push(favoriteDog)
             localStorage.setItem('favorite', JSON.stringify(fav))
@@ -162,6 +189,8 @@ catSaveBtn.addEventListener('click', function(){
         
     } else {
         console.log('this should run every next time button is pressed')
+        fav.push(favoriteCat)
+        localStorage.setItem('favorite', JSON.stringify(fav))
         catSaveBtn.onclick = function(){
             fav.push(favoriteCat)
             localStorage.setItem('favorite', JSON.stringify(fav))

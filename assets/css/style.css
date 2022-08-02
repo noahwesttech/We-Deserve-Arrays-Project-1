@@ -55,3 +55,15 @@ body {
 .image-box img {
     margin: 10px;
 }
+
+.modal-content {
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto;
+}
+
+#previousFave, #nextFave {
+    color: white;
+    font-size: 5em;
+    margin: auto 2rem;
+}
