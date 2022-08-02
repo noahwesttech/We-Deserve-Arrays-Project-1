@@ -82,6 +82,9 @@ var dogImage = document.getElementById('dogGen');
 var catImage = document.getElementById('catGen');
 var dogSaveBtn = document.getElementById('dog-picture');
 var catSaveBtn = document.getElementById('cat-picture');
+var startBtn = document.getElementById('start-btn');
+var welcomePage = document.getElementById('welcome-page');
+var picPage = document.getElementById('picture-page');
 var dogUrl = "https://dog.ceo/api/breeds/image/random?api_key=2956d378-6020-4b69-9e28-da7f6fe497ea"
 var catUrl = "https://api.thecatapi.com/v1/images/search?format=json&limit=1&mime_types=jpeg&api_key=14117caf-d563-42d7-9732-1db0619ab4b4"
 var fav = JSON.parse(localStorage.getItem('favorite')) || []
@@ -123,6 +126,16 @@ apiCallButton.addEventListener('click', function() {
     apiGenImages()
 });
 
+
+// Welcome Page with start button event listener. Will start the app to show the pictures
+startBtn.addEventListener('click', function(){
+    if (invisibleCol.style.display === "none") {
+        welcomePage.style.display = "none";
+        picPage.style.display = "block";
+        apiGenImages()
+        buttonAppear()
+    }
+})
 //Makes the first click of the clickable cat/dog call images and reveal the next button, then clicking the cat/dog will save the api image id to favorites
 dogSaveBtn.addEventListener('click', function(){
     if (invisibleCol.style.display === "none") {
