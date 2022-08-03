@@ -38,3 +38,9 @@ To access the application, you can follow the deployment link or download the so
 
 * User will have the option to clear the Favorite section.
 <p><img src="./assets/clear.png"></p>
+
+## Contributors
+* <p><a href="https://github.com/noahwesttech">Noah Westberry</a></p>
+* <p><a href="https://github.com/baileyrachael25">Rachael Bailey</a></p>
+* <p><a href="https://github.com/CraftyDM">Amber Arave</a></p>
+* <p><a href="https://github.com/itsDenMat">Dennis Mateo</a></p>
