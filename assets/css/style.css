@@ -3,6 +3,7 @@ body {
     font-family: 'Amatic SC', cursive;
 }
 
+/* Navbar and title*/
 .app-name {
     font-size: 75px;
     color: darkslategray
@@ -13,6 +14,7 @@ body {
     color: white;
 }
 
+/* Welcome page */
 .welcome-title {
     color: darkslategray;
     text-decoration: underline;
@@ -24,6 +26,7 @@ body {
     color: darkslategray;
 }
 
+/* Start button in welcome page */
 #start-btn {
     margin: 20px;
     font-family: 'Amatic SC', cursive;
@@ -40,6 +43,7 @@ body {
     font-weight: bold;
 }
 
+/* Style for dog and cat picture selections */
 .left-img {
     box-shadow: 0px 10px 10px rgb(72, 70, 70);
 }
@@ -56,6 +60,7 @@ body {
     margin: 10px;
 }
 
+/* Next button for the image selection */
 #next-button {
     margin: 20px;
     font-family: 'Amatic SC', cursive;
@@ -72,6 +77,7 @@ body {
     font-weight: bold;
 }
 
+/* Modal for favorite pictures */
 .modal-content {
     display: flex;
     flex-direction: row;
@@ -84,6 +90,7 @@ body {
     border-radius: 5%;
 }
 
+/* Previous and next button for favorite section */
 #previousFave, #nextFave {
     border: none;
     color: darkslategray;
@@ -108,6 +115,7 @@ body {
     font-weight: bold;
 }
 
+/* Delete button/clear button */
 #deleteBtn {
     margin: 50px;
     font-family: 'Amatic SC', cursive;
