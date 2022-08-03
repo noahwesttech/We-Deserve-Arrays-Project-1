@@ -7,17 +7,33 @@ const showModal = document.querySelector("#modal")
 const closeBtn = document.querySelector("#closeBtn")
 const previousFave = document.querySelector("#previousFave")
 const nextFave = document.querySelector("#nextFave")
+const clearFave = document.querySelector("#deleteBtn")
 
 //save and load functions
 showFav.addEventListener('click', modalToggle)
 closeBtn.addEventListener('click', modalToggle)
 previousFave.addEventListener('click', lastImg)
 nextFave.addEventListener('click', nextImg)
+clearFave.addEventListener('click', deleteFavorites)
 
 function modalToggle() {
-    showModal.classList.toggle("is-active")
-    load()
-    showSlideshow()
+    if (welcomePage.style.display === "") {
+        console.log('favorites button will not open on welcome page')       
+    } else {
+        showModal.classList.toggle("is-active")
+        load()
+        showSlideshow()
+    } 
+}
+
+function saveDogs() {
+    fav.push(favoriteDog)
+    localStorage.setItem('favorite', JSON.stringify(fav))
+}
+
+function saveCats() {
+    fav.push(favoriteCat)
+    localStorage.setItem('favorite', JSON.stringify(fav))
 }
 
 function load() {
@@ -29,6 +45,7 @@ function load() {
         currentFavorite = likedArray[0]
     }
 }
+
 function nextImg() {
     rollSlide()
     displayImg()
@@ -41,8 +58,6 @@ function lastImg() {
 
 //if no favorites, stop
 function rollSlide() {
-   
-    
     if (likedArray.length===0) {
         return
     }
@@ -60,6 +75,7 @@ function rollSlide() {
 
     }
 }
+
 function rollBack() {
     if (likedArray.length===0) {
         return
@@ -77,6 +93,7 @@ function rollBack() {
 
     }
 }
+
 //making the slideshow. if nothing, show nada
 function showSlideshow() {
     if (likedArray.length === 0){
@@ -97,8 +114,13 @@ function displayImg() {
     slideshow.appendChild(newSlide) //attached img. YAY!
 }
 
-
-
+ //Emptys arrays, clears the local storage, and replaces currrent favorite with empty string
+function deleteFavorites(){
+    likedArray.splice(0, likedArray.length)
+    fav.splice(0, fav.length)
+    localStorage.clear()
+    currentFavorite = ""  
+};
 
 //Variables
 var invisibleCol = document.getElementById('columnTwo');
@@ -113,10 +135,12 @@ var picPage = document.getElementById('picture-page');
 var dogUrl = "https://dog.ceo/api/breeds/image/random?api_key=2956d378-6020-4b69-9e28-da7f6fe497ea"
 var catUrl = "https://api.thecatapi.com/v1/images/search?format=json&limit=1&mime_types=jpeg&api_key=14117caf-d563-42d7-9732-1db0619ab4b4"
 var fav = JSON.parse(localStorage.getItem('favorite')) || []
-let favoriteDog = ''
-let favoriteCat = ''
+let favoriteDog = ""
+let favoriteCat = ""
 
-//call Api images
+
+
+//call Api images and save the image url to an empty string
 function apiGenImages(){
     fetch(dogUrl)
     .then(res => res.json())
@@ -124,8 +148,6 @@ function apiGenImages(){
         console.log(result)
         dogImage.src = result.message
         favoriteDog = result.message
-        console.log('the last dog url was saved in a string')
-        console.log(favoriteDog)
     })    
     .catch(err=>console.log(err))
 
@@ -135,22 +157,21 @@ function apiGenImages(){
             console.log(result)
             catImage.src = result[0].url
             favoriteCat = result[0].url
-            console.log('the last cat url was saved in a string')
-            console.log(favoriteCat)
         })    
     .catch(err=>console.log(err))
 };
 
-//function to make next-button appear after the cat or dog button is clicked for the first time
+//function to make next-button appear
 function buttonAppear() {
     invisibleCol.removeAttribute('style');
 };
 
 //When next-button appears it will continously call images from both cat/dog apis
-apiCallButton.addEventListener('click', function() {
-    apiGenImages()
-});
+apiCallButton.addEventListener('click', apiGenImages)
 
+//clicking the cat/dog images will save the api url to favorites
+dogSaveBtn.addEventListener('click', saveDogs)
+catSaveBtn.addEventListener('click', saveCats)
 
 // Welcome Page with start button event listener. Will start the app to show the pictures
 startBtn.addEventListener('click', function(){
@@ -160,41 +181,4 @@ startBtn.addEventListener('click', function(){
         apiGenImages()
         buttonAppear()
     }
-})
-//Makes the first click of the clickable cat/dog call images and reveal the next button, then clicking the cat/dog will save the api image id to favorites
-dogSaveBtn.addEventListener('click', function(){
-    if (invisibleCol.style.display === "none") {
-        console.log('this is the very first click')
-        apiGenImages()
-        buttonAppear()
-        
-    } else {
-        console.log('this should run every next time button is pressed')
-        fav.push(favoriteDog)
-        localStorage.setItem('favorite', JSON.stringify(fav))
-        dogSaveBtn.onclick = function(){
-            fav.push(favoriteDog)
-            localStorage.setItem('favorite', JSON.stringify(fav))
-            console.log('This Dog url was saved to favorites container')
-            console.log(localStorage)
-        }
-    }
 });
-
-catSaveBtn.addEventListener('click', function(){
-    if (invisibleCol.style.display === "none") {
-        console.log('this is the very first click')
-        apiGenImages()
-        buttonAppear()
-        
-    } else {
-        console.log('this should run every next time button is pressed')
-        fav.push(favoriteCat)
-        localStorage.setItem('favorite', JSON.stringify(fav))
-        catSaveBtn.onclick = function(){
-            fav.push(favoriteCat)
-            localStorage.setItem('favorite', JSON.stringify(fav))
-            console.log('This cat url was saved to favorites container')
-            console.log(localStorage)
-        }       
-}});
